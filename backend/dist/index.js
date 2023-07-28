@@ -1,5 +1,4 @@
 "use strict";
-// console.log("hiii")
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -20,8 +19,10 @@ app.use(logger);
 app.get("/", (req, res) => {
     res.send("hellow form ts");
 });
+
 // Add the routes
 app.use("/", route_1.router);
+
 // Start the server
 const PORT = Number(process.env.PORT) || 6010;
 const server = app.listen(PORT, () => console.log(`runig on port  ${PORT}`));

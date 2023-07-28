@@ -1,7 +1,4 @@
 "use strict";
-// import express,{Request, Response} from "express";
-// import { gethome } from "../controllers/emp";
-// const router = express.Router();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -16,22 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
-// router.get("/home",gethome)
-// export{router}
 const express_1 = __importDefault(require("express"));
 const model_1 = __importDefault(require("../model/model"));
 const router = express_1.default.Router();
 exports.router = router;
-router.get("/logs", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const logs = yield logsModel.aggregate([{ $sort: { "timestamp": -1 } }, { $limit: 30 }]);
-        res.json({ logs });
-    }
-    catch (error) {
-        console.log(error);
-        res.json({ msg: error });
-    }
-}));
+//................GET LOG...............//
+// router.get("/logs",async(req,res)=>{
+//     try {
+//         const logs=await logsModel.aggregate([{$sort:{"timestamp":-1}},{$limit:30}])
+//         res.json({logs})
+//     } catch (error) {
+//         console.log(error)
+//         res.json({msg:error})
+//     }
+// })
+//....................GET EMPLOYEES................//
 router.get('/employees', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const employees = yield model_1.default.find({ isDeleted: false });
@@ -41,6 +37,7 @@ router.get('/employees', (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(500).send("error");
     }
 }));
+//.....................POST EMPLOYEES...................//
 router.post('/employees', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, title, department, annualSalary } = req.body;
@@ -57,6 +54,7 @@ router.post('/employees', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(400).send("error");
     }
 }));
+//.....................UPDATE EMPLOYEES...................//
 router.put('/employees/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -77,6 +75,7 @@ router.put('/employees/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(400).send("error");
     }
 }));
+//.....................DELETE EMPLOYEES...................//
 router.delete('/employees/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;

@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(logger)
 
 app.get("/",(req: Request,res: Response)=>{
-    res.send("hellow form ts")
+    res.send("Employee-Creation-Updation-and-Deletion-App")
 })
 
 // Add the routes
